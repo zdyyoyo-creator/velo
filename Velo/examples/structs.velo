@@ -1,0 +1,37 @@
+# structs.velo —— 结构体、枚举与函数
+struct Point:
+    x: float
+    y: float
+
+enum Color:
+    Red
+    Green
+    Blue
+
+def dist2(a: Point, b: Point) -> float:
+    var dx = b.x - a.x
+    var dy = b.y - a.y
+    return dx * dx + dy * dy
+
+def color_name(c: Color) -> str:
+    if c == Color.Red:
+        return "红"
+    elif c == Color.Green:
+        return "绿"
+    else:
+        return "蓝"
+
+def main() -> int:
+    var p = Point(3.0, 4.0)
+    var q = Point(0.0, 0.0)
+    println("p = ({p.x}, {p.y})")
+    println("距离平方 =", dist2(p, q))
+    println("距离 =", sqrt(dist2(p, q)))
+
+    var c = Color.Green
+    println("颜色名:", color_name(c))
+    if c == Color.Red:
+        println("这是红色")
+    else:
+        println("这不是红色")
+    return 0

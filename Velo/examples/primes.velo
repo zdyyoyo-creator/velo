@@ -1,0 +1,22 @@
+# primes.velo —— 埃拉托斯特尼筛法
+def main() -> int:
+    var n = 1000000
+    var sieve = fill(n + 1, True)
+    sieve[0] = False
+    sieve[1] = False
+
+    var i = 2
+    while i * i <= n:
+        if sieve[i]:
+            var j = i * i
+            while j <= n:
+                sieve[j] = False
+                j += i
+        i += 1
+
+    var count = 0
+    for k in range(n + 1):
+        if sieve[k]:
+            count += 1
+    println("1 到 {n} 之间的素数个数:", count)
+    return 0

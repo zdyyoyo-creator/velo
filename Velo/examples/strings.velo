@@ -1,0 +1,26 @@
+# strings.velo —— 字符串处理
+def main() -> int:
+    var s = "Hello, World"
+    println(s.upper())
+    println(s.lower())
+    println("字节长度:", len(s))
+    println("包含 World:", s.contains("World"))
+    println("替换:", s.replace("World", "Velo"))
+    println("切片:", s[0:5])
+    println("逗号位置:", s.find(","))
+    println("以 Hello 开头:", s.starts_with("Hello"))
+
+    var parts = s.split(", ")
+    for p in parts:
+        println("片段:", p)
+
+    var words = "the quick brown fox jumps".split_ws()
+    println("单词数:", len(words))
+    words.sort()
+    println("排序后:", ", ".join(words))
+
+    var n = "42".to_int()
+    println("字符串转数字 + 8 =", n + 8)
+    println("数字转字符串:", str(3.5) + "|" + str(42))
+    println("重复:", "ab".repeat(3))
+    return 0

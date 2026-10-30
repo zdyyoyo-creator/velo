@@ -1,0 +1,33 @@
+# wordcount.velo —— 统计文本文件中的高频词
+# 用法: veloc run wordcount.velo <文件路径>
+def main() -> int:
+    if arg_count() < 1:
+        println("用法: wordcount <文件路径>")
+        return 1
+
+    var path = arg(0)
+    if not file_exists(path):
+        println("文件不存在: {path}")
+        return 1
+
+    var text = read_file(path).lower()
+    var words = text.split_ws()
+    var total = len(words)
+    if total == 0:
+        println("文件里没有单词")
+        return 0
+    println("单词总数:", total)
+
+    words.sort()
+    var i = 0
+    var shown = 0
+    while i < total:
+        var j = i + 1
+        while j < total and words[j] == words[i]:
+            j += 1
+        var count = j - i
+        if count >= 2 and shown < 10:
+            println("  {words[i]} 出现 {count} 次")
+            shown += 1
+        i = j
+    return 0

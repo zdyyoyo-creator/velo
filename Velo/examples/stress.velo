@@ -1,0 +1,43 @@
+# stress.velo —— 引用计数压力测试：大量的字符串拼接 / 列表增删 / 提前退出
+def build_string(n: int) -> str:
+    var s = ""
+    for i in range(n):
+        s += "x"
+    return s
+
+def pick(n: int) -> str:
+    if n % 3 == 0:
+        return "fizz"
+    elif n % 5 == 0:
+        return "buzz"
+    return build_string(n % 7)
+
+def main() -> int:
+    var total = 0
+    for r in range(2000):
+        var s = build_string(20)
+        total += len(s)
+
+        var parts = "alpha,beta,gamma,delta".split(",")
+        for p in parts:
+            total += len(p)
+
+        var l: list[str] = []
+        for i in range(15):
+            l.append(pick(i + r))
+        l.sort()
+        for x in l:
+            if len(x) > 6:
+                continue
+            total += 1
+        if r >= 300:
+            break
+
+        var words = "the quick brown fox".split_ws()
+        var joined = " ".join(words)
+        total += len(joined)
+
+        if r % 500 == 0:
+            println("round {r} total {total}")
+    println("最终:", total)
+    return 0

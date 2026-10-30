@@ -1,0 +1,28 @@
+# lists.velo —— 列表、循环、字符串拼接
+def main() -> int:
+    var squares: list[int] = []
+    for i in range(10):
+        squares.append(i * i)
+
+    var total = 0
+    for x in squares:
+        total += x
+    println("平方和 =", total)
+
+    squares.sort()
+    squares.reverse()
+    println("前三个:", squares[0], squares[1], squares[2])
+
+    var joined = ""
+    for i in range(5):
+        joined += "{i};"
+    println("拼接结果:", joined)
+
+    var names = ["Ada", "Grace", "Linus"]
+    names.append("Velo")
+    names.sort()
+    for nm in names:
+        println("  语言:", nm)
+    println("包含 Ada:", "Ada" in names)
+    println("Grace 的下标:", names.index_of("Grace"))
+    return 0
